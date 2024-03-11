@@ -32,7 +32,7 @@ import requests
 import json
 
 # URL of the API
-url = 'http://localhost:5000/'
+url = 'https://paste-gsr8.onrender.com/'
 
 # Your text to send
 my_text = '''This is my text. It can be as long as needed, 
