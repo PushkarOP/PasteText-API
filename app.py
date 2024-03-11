@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import string
 import random
+from jinja2 import escape
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
@@ -24,7 +25,8 @@ def post_text():
 @app.route('/text/<id>', methods=['GET'])
 def get_text(id):
     text = Text.query.get_or_404(id)
-    return render_template_string('<html><body>' + text.content + '</body></html>')
+    escaped_text = escape(text.content)  # escape before rendering
+    return render_template_string(escaped_text)
 
 if __name__ == '__main__':
     with app.app_context(): 
