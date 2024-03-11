@@ -15,7 +15,7 @@ class Text(db.Model):
 @app.route('/', methods=['POST'])
 def post_text():
     content = request.get_json().get('content')
-    id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
+    id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=8))
     text = Text(id=id, content=content)
     db.session.add(text)
     db.session.commit()
@@ -24,7 +24,7 @@ def post_text():
 @app.route('/text/<id>', methods=['GET'])
 def get_text(id):
     text = Text.query.get_or_404(id)
-    return render_template_string('<html><body><pre>' + text.content + '</pre></body></html>')
+    return render_template_string('<html><body>' + text.content + '</body></html>')
 
 if __name__ == '__main__':
     with app.app_context(): 
