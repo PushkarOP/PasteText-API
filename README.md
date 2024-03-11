@@ -16,7 +16,7 @@ pip install flask flask_sqlalchemy requests
 Start the Flask development server:
 
 ```bash
-python api.py
+python app.py
 ```
 
 A SQLite database will be created in the system's memory to store posted text.
