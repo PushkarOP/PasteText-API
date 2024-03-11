@@ -5,7 +5,7 @@ import string
 import random
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'  # Use your own database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
 class Text(db.Model):
@@ -27,6 +27,7 @@ def get_text(id):
     return render_template_string('<html><body><pre>' + text.content + '</pre></body></html>')
 
 if __name__ == '__main__':
-    if not os.path.exists('/tmp/test.db'):
-        db.create_all()
+    with app.app_context(): 
+        if not os.path.exists('/tmp/test.db'):
+            db.create_all()
     app.run(host='0.0.0.0', port=8000)
