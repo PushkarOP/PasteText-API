@@ -26,7 +26,7 @@ def post_text():
 def get_text(id):
     text = Text.query.get_or_404(id)
     escaped_text = escape(text.content)  
-    return Response('<html><body><pre>' + escaped_text + '</pre></body></html>', mimetype='text/html')
+    return Response('<html><body>' + escaped_text + '</body></html>', mimetype='text/html')
 
 if __name__ == '__main__':
     with app.app_context(): 
