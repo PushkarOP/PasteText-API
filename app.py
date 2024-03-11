@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string, jsonify
+from flask import Flask, request, render_template_string, jsonify, Response
 from flask_sqlalchemy import SQLAlchemy
 import os
 import string
@@ -25,8 +25,8 @@ def post_text():
 @app.route('/text/<id>', methods=['GET'])
 def get_text(id):
     text = Text.query.get_or_404(id)
-    escaped_text = escape(text.content)  # escape before rendering
-    return render_template_string(escaped_text)
+    escaped_text = escape(text.content)  
+    return Response('<html><body><pre>' + escaped_text + '</pre></body></html>', mimetype='text/html')
 
 if __name__ == '__main__':
     with app.app_context(): 
