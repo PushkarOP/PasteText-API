@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string, jsonify, Response
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 import string
@@ -27,6 +27,10 @@ def get_text(id):
     text = Text.query.get_or_404(id)
     escaped_text = escape(text.content)  
     return escaped_text
+
+@app.route('/alive', methods=['GET'])
+def alive():
+    return "I'm alive!"
 
 if __name__ == '__main__':
     with app.app_context(): 
