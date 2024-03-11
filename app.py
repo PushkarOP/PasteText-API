@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import string
 import random
-from jinja2 import escape
+from markupsafe import escape
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
